@@ -1,27 +1,128 @@
-# NgAdvancedComponents
+<p align="center">
+  <h1 align="center">Minimal Angular Gallery Slider</h1>
+</p>
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.1.
+[![Support](https://img.shields.io/badge/Support-Angular%2013%2B-blue.svg?style=flat-square)]()
+[![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)]()
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Table of contents
 
-## Code scaffolding
+- [Table of contents](#table-of-contents)
+- [Features](#features)
+- [Demo](#demo)
+  - [StackBlitz Demo](#stackblitz-demo)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Available Options](#available-options)
+- [Versioning](#versioning)
+- [Creator](#creator)
+  - [Beka Maisuradze](#beka-maisuradze)
+- [Ask Me](#ask-me)
+  - [License](#license)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
+## Features
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- **Angular 13** Support
+- Smooth sliding with @angular/animations
+- Fully reusable component
+- Small bundle size
 
-## Running unit tests
+## Demo
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
+### StackBlitz Demo
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+- [Normal Usage](https://stackblitz.com/edit/angular-ivy-v2hdpm)
 
-## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## Installation
+
+`angular-gallery-slider` is available via [npm](https://www.npmjs.com/package/angular-gallery-slider)
+
+Using npm:
+
+```bash
+$ npm install angular-gallery-slider
+```
+
+```
+## Usage
+
+Add this to to angular.json
+
+{
+  "assets": [
+	 ...,
+	{
+	"glob": "**/*",
+	"input": "./node_modules/angular-gallery-slider/assets/",
+	"output": "/assets/"
+	}
+  ]
+}
+```
+
+Import `AngularGallerySliderModule` and `BrowserAnimationsModule` in in the root module(`AppModule`):
+
+```typescript
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { AngularGallerySliderModule } from  'angular-gallery-slider';
+
+@NgModule({
+  imports: [
+    // ...
+    BrowserAnimationsModule, 
+    AngularGallerySliderModule
+  ],
+})
+export class AppModule {}
+```
+
+**Template usage**
+It is possible to customize the preview image and slider image using templating. The ngTemplate receives the `item` as the implicit variable. `preview` template is used for displaying preview image. `item` template is used to displaying the slider image item.
+
+```html
+<gl-gallery [value]="galleryData" [itemSize]="5" [previewSize]="500">
+	<ng-template template="preview" let-data>
+		<img src="{{ data.previewImageSource }}" alt="preview"/>
+	</ng-template>
+	<ng-template template="item" let-data>
+		<img src="{{ data.imageSource }}" alt="image"/>
+	</ng-template>
+</gl-gallery>
+```
+
+## Available properties
+
+- **[value]**: An array of objects to display as gallery items.
+- **[itemSize]**:  Used for specifying how many number of slider items can be shown in gallery.
+- **[previewSize]**: Provide custom height of the preview image
+
+
+
+
+## Versioning
+
+angular-gallery-slider is maintained under the Semantic Versioning guidelines.
+Releases will be numbered with the following format:
+
+`<major>.<minor>.<patch>`
+
+For more information on SemVer, please visit http://semver.org.
+
+## Creator
+
+#### [Beka Maisuradze](mailto:yuvrajchauhan3113@gmail.com)
+
+- [@GitHub](https://github.com/bekamais)
+
+## Ask Me
+
+- Send me questions on  [Email](mailto:maisuradzebeka0@gmail.com) 
+
+### License
+
+[MIT license](./LICENSE)

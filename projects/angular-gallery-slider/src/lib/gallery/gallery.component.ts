@@ -34,10 +34,17 @@ export class GalleryComponent<T> {
 
   @Input() value: T[] = [];
 
+  /**
+   * Provide custom height of the preview image.
+   */
   @Input() set previewSize(value: number) {
     this.updateHeight(value);
   }
 
+  /**
+   * Used for specifying how many number of
+   * slider items can be shown inside gallery.
+   */
   @Input() set itemSize(value: number) {
     this.updateSize(value);
   }

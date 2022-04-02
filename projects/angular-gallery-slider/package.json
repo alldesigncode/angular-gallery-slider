@@ -1,10 +1,29 @@
 {
   "name": "angular-gallery-slider",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "peerDependencies": {
     "@angular/common": "^13.3.0",
     "@angular/core": "^13.3.0"
   },
+  "license": "MIT",
+  "author": {
+    "name": "Beka Maisuradze",
+    "email": "maisuradzebeka0@gmail.com"
+  },
+  "keywords": [
+    "angular",
+    "gallery",
+    "slider",
+    "angular12",
+    "angular13",
+    "gallery-slider",
+    "angular-slider",
+    "angular-gallery",
+    "angular-animations",
+    "ng-gallery",
+    "ng-slider",
+    "ivy"
+  ],
   "dependencies": {
     "tslib": "^2.3.0"
   }
