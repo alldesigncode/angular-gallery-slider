@@ -2,6 +2,12 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "paths": {
+      "angular-gallery-slider": [
+        "dist/angular-gallery-slider/angular-gallery-slider",
+        "dist/angular-gallery-slider"
+      ]
+    },
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,

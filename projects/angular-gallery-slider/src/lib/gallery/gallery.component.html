@@ -1,0 +1,27 @@
+<div class="gl-preview" *ngIf="hasTemplateName(PREVIEW)">
+  <ng-container *ngTemplateOutlet="
+        getTemplate(PREVIEW).template;
+        context: { $implicit: selectedImagePreview }
+      "></ng-container>
+</div>
+<div class="gl-nav" *ngIf="hasTemplateName(ITEM)">
+  <div class="gl-nav-slider" #slider>
+    <div class="gl-nav-slider-item" (click)="select(slider, i)" [ngClass]="{ active: activeIndex === i }"
+      *ngFor="let item of value; index as i">
+      <ng-container *ngTemplateOutlet="
+            getTemplate(ITEM).template;
+            context: { $implicit: item }
+          "></ng-container>
+    </div>
+  </div>
+  <button class="gl-nav-btn gl-nav-btn--prev" (click)="prev(slider)">
+    <svg class="icon">
+      <use href="./assets/icons/icons.svg#icon-chevron-left"></use>
+    </svg>
+  </button>
+  <button class="gl-nav-btn gl-nav-btn--next" (click)="next(slider)">
+    <svg class="icon">
+      <use href="./assets/icons/icons.svg#icon-chevron-right"></use>
+    </svg>
+  </button>
+</div>

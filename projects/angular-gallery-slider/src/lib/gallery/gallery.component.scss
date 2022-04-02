@@ -1,0 +1,95 @@
+gl-gallery,
+.gl-gallery {
+  --g-easing: cubic-bezier(0.45, 0, 0.55, 1);
+  --g-color-light: #fdfdfd;
+  --g-box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
+    rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+
+  display: grid;
+  grid-template-rows: auto auto;
+  user-select: none;
+  box-shadow: var(--g-box-shadow);
+  overflow: hidden;
+  background-color: var(--g-color-light);
+}
+
+.gl-preview {
+  position: relative;
+
+  & > * {
+    inline-size: 100%;
+    block-size: 100%;
+    display: block;
+    object-fit: cover;
+  }
+}
+
+.gl-nav {
+  position: relative;
+  overflow: hidden;
+
+  .gl-nav-btn {
+    position: absolute;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    border: 0;
+    outline: none;
+    cursor: pointer;
+    z-index: 100;
+    padding: 3px;
+    transition: transform 0.1s var(--g-easing);
+
+    .icon {
+      inline-size: 30px;
+      block-size: 30px;
+      fill: var(--g-color-light);
+    }
+
+    &--prev,
+    &--next {
+      top: 50%;
+      transform: translate(0, -50%);
+    }
+
+    &--prev {
+      left: 10px;
+    }
+    &--next {
+      right: 10px;
+    }
+
+    &--prev:hover,
+    &--next:hover {
+      transform: translate(0, -50%) scale(1.1);
+    }
+
+    &--prev:active,
+    &--next:active {
+      transform: translate(0, -50%) scale(1);
+    }
+  }
+
+  .gl-nav-slider {
+    display: flex;
+    flex-wrap: nowrap;
+
+    .gl-nav-slider-item {
+      position: relative;
+      cursor: pointer;
+      filter: brightness(0.4);
+      transition: filter 0.2s var(--g-easing);
+
+      & > * {
+        inline-size: 150px;
+        block-size: 150px;
+        display: block;
+      }
+    }
+
+    .gl-nav-slider-item.active {
+      cursor: default;
+      filter: brightness(1);
+    }
+  }
+}
