@@ -82,6 +82,7 @@ export class AppModule {}
 ```
 
 **Template usage**
+
 It is possible to customize the preview image and slider image using templating. The ngTemplate receives the `item` as the implicit variable. `preview` template is used for displaying preview image. `item` template is used to displaying the slider image item.
 
 ```html
