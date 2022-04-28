@@ -1,16 +1,17 @@
 gl-gallery,
 .gl-gallery {
-  --g-easing: cubic-bezier(0.45, 0, 0.55, 1);
-  --g-color-light: #fdfdfd;
-  --g-box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
+  --gl-easing: cubic-bezier(0.45, 0, 0.55, 1);
+  --gl-color-light: #fdfdfd;
+  --gl-box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
     rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+  --gl-slider-bg-color: hsl(0deg 0% 14% / 98%);
 
   display: grid;
   grid-template-rows: auto auto;
   user-select: none;
-  box-shadow: var(--g-box-shadow);
+  box-shadow: var(--gl-box-shadow);
   overflow: hidden;
-  background-color: var(--g-color-light);
+  background-color: var(--gl-color-light);
 }
 
 .gl-preview {
@@ -27,6 +28,7 @@ gl-gallery,
 .gl-nav {
   position: relative;
   overflow: hidden;
+  background-color: var(--gl-slider-bg-color);
 
   .gl-nav-btn {
     position: absolute;
@@ -38,12 +40,13 @@ gl-gallery,
     cursor: pointer;
     z-index: 100;
     padding: 3px;
-    transition: transform 0.1s var(--g-easing);
+    transition: transform 0.1s var(--gl-easing);
 
     .icon {
-      inline-size: 30px;
-      block-size: 30px;
-      fill: var(--g-color-light);
+      font-size: 30px;
+      inline-size: inherit;
+      block-size: inherit;
+      color: var(--gl-color-light);
     }
 
     &--prev,
@@ -78,7 +81,7 @@ gl-gallery,
       position: relative;
       cursor: pointer;
       filter: brightness(0.4);
-      transition: filter 0.2s var(--g-easing);
+      transition: filter 0.2s var(--gl-easing);
 
       & > * {
         inline-size: 150px;
