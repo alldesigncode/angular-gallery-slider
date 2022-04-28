@@ -43,10 +43,9 @@ gl-gallery,
     transition: transform 0.1s var(--gl-easing);
 
     .gl-icon {
-      font-size: 30px;
-      inline-size: inherit;
-      block-size: inherit;
-      color: var(--gl-color-light);
+      inline-size: 30px;
+      block-size: 30px;
+      fill: var(--gl-color-light);
     }
 
     &--prev,

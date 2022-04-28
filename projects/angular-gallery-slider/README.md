@@ -51,20 +51,6 @@ $ npm install angular-gallery-slider
 ```
 
 ## Usage
-```
-In order for icons to be loaded, add the following code in angular.json
-
-{
-  "styles": [
-	 ...,
-     "./node_modules/angular-gallery-slider/assets/icons.css"
-  ]
-}
-
-or directly do an import in your root style.css:
-
-@import  '~angular-gallery-slider/assets/icons.css';
-```
 
 Import `AngularGallerySliderModule` and `BrowserAnimationsModule` in the root module(`AppModule`):
 
