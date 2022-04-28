@@ -1,18 +1,18 @@
 @font-face {
-  font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?f9hull');
-  src:  url('fonts/icomoon.eot?f9hull#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?f9hull') format('truetype'),
-    url('fonts/icomoon.woff?f9hull') format('woff'),
-    url('fonts/icomoon.svg?f9hull#icomoon') format('svg');
+  font-family: 'gl-icons';
+  src:  url('fonts/gl-icons.eot?7pkpth');
+  src:  url('fonts/gl-icons.eot?7pkpth#iefix') format('embedded-opentype'),
+    url('fonts/gl-icons.ttf?7pkpth') format('truetype'),
+    url('fonts/gl-icons.woff?7pkpth') format('woff'),
+    url('fonts/gl-icons.svg?7pkpth#gl-icons') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
 }
 
-[class^="icon-"], [class*=" icon-"] {
+i {
   /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: 'icomoon' !important;
+  font-family: 'gl-icons' !important;
   speak: never;
   font-style: normal;
   font-weight: normal;
@@ -25,9 +25,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-chevron-left:before {
+.gl-chevron-left:before {
   content: "\e900";
 }
-.icon-chevron-right:before {
+.gl-chevron-right:before {
   content: "\e901";
 }
