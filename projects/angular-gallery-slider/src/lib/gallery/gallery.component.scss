@@ -12,6 +12,7 @@ gl-gallery,
   box-shadow: var(--gl-box-shadow);
   overflow: hidden;
   background-color: var(--gl-color-light);
+  position: relative;
 }
 
 .gl-preview {
@@ -19,14 +20,14 @@ gl-gallery,
 
   & > * {
     inline-size: 100%;
-    block-size: 100%;
-    display: block;
-    object-fit: cover;
   }
 }
 
 .gl-nav {
-  position: relative;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
   overflow: hidden;
   background-color: var(--gl-slider-bg-color);
 
@@ -36,7 +37,6 @@ gl-gallery,
     display: flex;
     align-items: center;
     border: 0;
-    outline: none;
     cursor: pointer;
     z-index: 100;
     padding: 3px;

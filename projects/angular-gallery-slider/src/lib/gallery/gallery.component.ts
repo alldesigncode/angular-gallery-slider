@@ -6,18 +6,21 @@ import {
   style,
 } from '@angular/animations';
 import {
+  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   ContentChildren,
+  ElementRef,
   HostBinding,
+  HostListener,
   Input,
   QueryList,
+  ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
 import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 import { constants } from './constants';
 import { GalleryTemplateDirective } from './gallery-template.directive';
-import { getUpdatedSize } from './helpers';
 
 @Component({
   selector: 'gl-gallery',
@@ -29,23 +32,14 @@ import { getUpdatedSize } from './helpers';
     class: 'gl-gallery',
   },
 })
-export class GalleryComponent<T> {
+export class GalleryComponent<T> implements AfterViewInit {
   activeIndex = constants.BASE_INDEX;
 
   @Input() value: T[] = [];
 
-  /**
-   * Provide custom height of the preview image.
-   */
-  @Input() set previewSize(value: number) {
-    this.updateHeight(value);
-  }
-
-  /**
-   * Used for specifying how many number of
-   * slider items can be shown inside gallery.
-   */
+  private _itemSize = 0;
   @Input() set itemSize(value: number) {
+    this._itemSize = value;
     this.updateSize(value);
   }
 
@@ -53,6 +47,14 @@ export class GalleryComponent<T> {
   get initialStyles() {
     return this.galleryStyles();
   }
+
+  @HostListener('window:resize')
+  onResize() {
+    this.resize();
+  }
+
+  @ViewChild('slider', { static: false })
+  private sliderReference?: ElementRef<HTMLDivElement>;
 
   @ContentChildren(GalleryTemplateDirective, { read: GalleryTemplateDirective })
   set template(templateList: QueryList<GalleryTemplateDirective>) {
@@ -80,6 +82,15 @@ export class GalleryComponent<T> {
     private builder: AnimationBuilder,
     private sanitizer: DomSanitizer
   ) {}
+
+  ngAfterViewInit() {
+    this.updateSetting(
+      'defaultGallerySliderWidth',
+      this.getActiveElement()?.clientWidth ?? constants.GALLERY_SLIDER_WIDTH
+    );
+
+    this.resize();
+  }
 
   prev(slider: HTMLDivElement) {
     this.select(
@@ -124,7 +135,7 @@ export class GalleryComponent<T> {
           translatePercentage,
           translateIndex: endTranslateMiddleIndex,
           element: slider,
-        }); // if it reached endTranslateMiddleIndex we are at the end and we should stop translating.
+        }); // if it reached the endTranslateMiddleIndex it means we are at the end and we should stop translating.
       }
     }
   }
@@ -141,10 +152,17 @@ export class GalleryComponent<T> {
     return this.templateList.some((s) => s.templateName === templateName);
   }
 
+  private updateSetting<T>(key: keyof GallerySettings, value: T) {
+    this.settings = {
+      ...this.settings,
+      [key]: value,
+    };
+  }
+
   private updateSize(size = this.settings.itemSize) {
     const { defaultGallerySliderWidth } = this.settings;
 
-    const updatedSize = getUpdatedSize(size, this.value.length);
+    const updatedSize = size > this.value.length ? this.value.length : size;
     const updatedContainerWidth = defaultGallerySliderWidth * updatedSize;
 
     this.settings = {
@@ -154,13 +172,6 @@ export class GalleryComponent<T> {
       translatePercentage:
         (defaultGallerySliderWidth / updatedContainerWidth) * 100,
       containerWidth: updatedContainerWidth,
-    };
-  }
-
-  private updateHeight(height = this.settings.height) {
-    this.settings = {
-      ...this.settings,
-      height,
     };
   }
 
@@ -197,8 +208,28 @@ export class GalleryComponent<T> {
 
   private galleryStyles(): SafeStyle {
     return this.sanitizer.bypassSecurityTrustStyle(
-      `inline-size: ${this.settings.containerWidth}px;
-      grid-template-rows: ${this.settings.height}px auto;`
+      `max-inline-size: ${this.settings.containerWidth}px`
+    );
+  }
+
+  private resize() {
+    const calcuatedItemSize = Math.floor(
+      window.innerWidth / this.settings.defaultGallerySliderWidth
+    );
+
+    const finalItemSize =
+      calcuatedItemSize > this._itemSize ? this._itemSize : calcuatedItemSize;
+
+    this.updateSize(finalItemSize);
+
+    this.select(this.sliderReference!.nativeElement, this.activeIndex);
+  }
+
+  private getActiveElement(): HTMLDivElement | undefined {
+    const slider = this.sliderReference?.nativeElement;
+
+    return ([].slice.call(slider?.children) as HTMLDivElement[]).find(
+      ({ classList }) => classList.contains('active')
     );
   }
 }
