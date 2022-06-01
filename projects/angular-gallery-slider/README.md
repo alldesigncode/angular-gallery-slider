@@ -6,9 +6,14 @@
 [![Support](https://img.shields.io/badge/Support-Angular%2013%2B-blue.svg?style=flat-square)]()
 [![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)]()
 
+## What's New
+- Responsive gallery
+- Bug fixes
+
 
 ## Table of contents
 
+- [What's New](#whats-new)
 - [Table of contents](#table-of-contents)
 - [Features](#features)
 - [Demo](#demo)
@@ -27,6 +32,7 @@
 ## Features
 
 - **Angular 13** Support
+- Responsive gallery
 - Smooth sliding with @angular/animations
 - Fully reusable component
 - Small bundle size
@@ -68,17 +74,17 @@ import { AngularGallerySliderModule } from  'angular-gallery-slider';
 export class AppModule {}
 ```
 
-**Template usage**
+**Template usage example**
 
-It is possible to customize the preview image and slider image using templating. The ngTemplate receives the `item` as the implicit variable. `preview` template is used for displaying preview image. `item` template is used to displaying the slider image item.
+It is possible to customize slider image using templating. The ngTemplate receives the `item` as the implicit variable. `preview` template is used for displaying preview image. `item` template is used to displaying the slider image item. 
 
 ```html
-<gl-gallery [value]="data" [itemSize]="5" [previewSize]="500">
+<gl-gallery [value]="data" [itemSize]="5">
 	<ng-template template="preview" let-data>
 		<img src="{{ data.previewImageSource }}" alt="preview"/>
 	</ng-template>
 	<ng-template template="item" let-data>
-		<img src="{{ data.imageSource }}" alt="image"/>
+		<img src="{{ data.imageSource }}" alt="image" style="block-size: 100px; inline-size: 100px;"/>
 	</ng-template>
 </gl-gallery>
 ```
@@ -86,9 +92,7 @@ It is possible to customize the preview image and slider image using templating.
 ## Available properties
 
 - **[value]**: An array of objects to display as gallery items.
-- **[itemSize]**:  Used for specifying how many number of slider items can be shown in gallery.
-- **[previewSize]**: Provide custom height of the preview image
-
+- **[itemSize]**:  Used for specifying how many number of slider items can be shown in gallery. (Note: the preview image size is automatically calculated based on itemSize and it is recommended to avoid setting custom height or width on a preview image)
 
 ## Versioning
 
@@ -102,7 +106,6 @@ For more information on SemVer, please visit http://semver.org.
 ## Future Plan
 - Accessibility (keyboard navigation support)
 - New properties to have more control over gallery
-- Making gallery responsive and mobile-friendly
 - Exposing `next` and `prev` handlers
 
 ## Creator
