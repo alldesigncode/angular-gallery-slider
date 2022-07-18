@@ -5,6 +5,9 @@
 [![Support](https://img.shields.io/badge/Support-Angular%2012%2B-blue.svg?style=flat-square)]()
 [![Support](https://img.shields.io/badge/Support-Angular%2013%2B-blue.svg?style=flat-square)]()
 [![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)]()
+ 
+[paypal]: https://img.shields.io/badge/-donate-blue.svg?logo=paypal
+[![paypal]](https://www.paypal.me/bekaam)
 
 ## What's New
 - Responsive gallery
